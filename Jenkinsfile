@@ -1,6 +1,13 @@
 pipeline {
     agent any
     stages {
+       stage('Lint HTML') {
+             steps {
+                 echo 'hello world'
+                 script {tidy -q -e index.html} 
+                 }
+             }
+
        stage('Upload to AWS') {
              steps {
                  withAWS(region:'us-west-2',credentials:'aws-static') {
